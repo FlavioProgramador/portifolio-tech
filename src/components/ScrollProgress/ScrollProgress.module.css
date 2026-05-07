@@ -1,0 +1,11 @@
+.progressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-cyan);
+  transform-origin: 0%;
+  z-index: 99998; /* just below splash */
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
