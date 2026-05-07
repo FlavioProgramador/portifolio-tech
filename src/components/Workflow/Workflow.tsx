@@ -5,6 +5,21 @@ import styles from './Workflow.module.css';
 import { FaLightbulb, FaPaintBrush, FaCode, FaRocket } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+const gridVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.16
+    }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 34, scale: 0.96 },
+  visible: { opacity: 1, y: 0, scale: 1 }
+};
+
 export default function Workflow() {
   const { dict } = useLanguage();
   
@@ -43,24 +58,34 @@ export default function Workflow() {
         {dict.workflow.title}
       </motion.h2>
 
-      <div className={styles.grid}>
+      <motion.div
+        className={styles.grid}
+        variants={gridVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+      >
         {steps.map((step, index) => (
           <motion.div 
             key={index}
             className={styles.card}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
+            variants={cardVariants}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            whileHover={{ y: -10, scale: 1.025 }}
+            whileTap={{ scale: 0.99 }}
           >
-            <div className={styles.iconWrapper}>
+            <motion.div
+              className={styles.iconWrapper}
+              whileHover={{ rotate: [0, -8, 8, 0], scale: 1.12 }}
+              transition={{ duration: 0.45 }}
+            >
               {step.icon}
-            </div>
+            </motion.div>
             <h3 className={styles.stepTitle}>{step.title}</h3>
             <p className={styles.stepDescription}>{step.description}</p>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

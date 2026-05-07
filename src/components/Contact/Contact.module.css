@@ -16,6 +16,21 @@
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 243, 255, 0.1);
   margin-bottom: 5rem;
   backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.terminalContainer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 243, 255, 0.08), transparent 35%, rgba(188, 19, 254, 0.08));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.terminalContainer:hover::before {
+  opacity: 1;
 }
 
 .terminalHeader {

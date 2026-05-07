@@ -38,6 +38,35 @@ const toolsSkills = [
 // Array dobrado para o efeito de loop infinito no Marquee
 const allSkills = [...frontendSkills, ...backendSkills, ...toolsSkills];
 
+const panelContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.08
+    }
+  }
+};
+
+const panelItem = {
+  hidden: { opacity: 0, y: 28, scale: 0.98 },
+  visible: { opacity: 1, y: 0, scale: 1 }
+};
+
+const pillContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.035 }
+  }
+};
+
+const pillItem = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 }
+};
+
 export default function Skills() {
   const { dict } = useLanguage();
   return (
@@ -52,60 +81,87 @@ export default function Skills() {
         {dict.skills.title}
       </motion.h2>
 
-      <div className={styles.container}>
+      <motion.div
+        className={styles.container}
+        variants={panelContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+      >
         <motion.div 
           className={styles.categoryPanel}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          variants={panelItem}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          whileHover={{ y: -8, scale: 1.01 }}
         >
           <h3 className={styles.categoryTitle}>Frontend</h3>
-          <div className={styles.pillContainer}>
+          <motion.div className={styles.pillContainer} variants={pillContainer}>
             {frontendSkills.map((skill, idx) => (
-              <div key={idx} className={styles.pill}>
+              <motion.div
+                key={idx}
+                className={styles.pill}
+                variants={pillItem}
+                whileHover={{ y: -4, scale: 1.04 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 {skill.name}
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.div 
           className={styles.categoryPanel}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          variants={panelItem}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          whileHover={{ y: -8, scale: 1.01 }}
         >
           <h3 className={styles.categoryTitle}>Backend & Banco de Dados</h3>
-          <div className={styles.pillContainer}>
+          <motion.div className={styles.pillContainer} variants={pillContainer}>
             {backendSkills.map((skill, idx) => (
-              <div key={idx} className={styles.pill}>
+              <motion.div
+                key={idx}
+                className={styles.pill}
+                variants={pillItem}
+                whileHover={{ y: -4, scale: 1.04 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 {skill.name}
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.div 
           className={styles.categoryPanel}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          variants={panelItem}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          whileHover={{ y: -8, scale: 1.01 }}
         >
           <h3 className={styles.categoryTitle}>Ferramentas</h3>
-          <div className={styles.pillContainer}>
+          <motion.div className={styles.pillContainer} variants={pillContainer}>
             {toolsSkills.map((skill, idx) => (
-              <div key={idx} className={styles.pill}>
+              <motion.div
+                key={idx}
+                className={styles.pill}
+                variants={pillItem}
+                whileHover={{ y: -4, scale: 1.04 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 {skill.name}
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
-      <div className={styles.marqueeWrapper}>
+      <motion.div
+        className={styles.marqueeWrapper}
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
         <div className={styles.marquee}>
           {[...allSkills, ...allSkills].map((skill, idx) => (
             <div key={idx} className={styles.marqueeItem}>
@@ -119,7 +175,7 @@ export default function Skills() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

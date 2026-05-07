@@ -42,22 +42,42 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+    <motion.nav
+      className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}
+      initial={{ opacity: 0, y: -24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, ease: 'easeOut' }}
+    >
       <div className={styles.osControls}>
         <button className={`${styles.osBtn} ${styles.osRed}`} onClick={closeOS} title="Desligar"></button>
         <button className={`${styles.osBtn} ${styles.osYellow}`} onClick={toggleMinimize} title="Minimizar"></button>
         <button className={`${styles.osBtn} ${styles.osGreen}`} title="Maximizar"></button>
       </div>
 
-      <div className={styles.logo}>
+      <motion.div
+        className={styles.logo}
+        initial={{ opacity: 0, x: -16 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2, duration: 0.45 }}
+        whileHover={{ scale: 1.04 }}
+      >
         <span className="text-gradient">{'Flavio.dev'}</span>
-      </div>
+      </motion.div>
       
       {/* Desktop Menu */}
       <div className={styles.desktopMenu}>
         <ul className={styles.navLinks}>
-          {navLinks.map((link) => (
-            <li key={link.name}><a href={link.href}>{link.name}</a></li>
+          {navLinks.map((link, index) => (
+            <motion.li
+              key={link.name}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25 + index * 0.06, duration: 0.35 }}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.96 }}
+            >
+              <a href={link.href}>{link.name}</a>
+            </motion.li>
           ))}
         </ul>
         <button 
@@ -128,6 +148,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 }

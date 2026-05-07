@@ -7,6 +7,21 @@ import styles from './Projects.module.css';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+const projectGridVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12
+    }
+  }
+};
+
+const projectCardVariants = {
+  hidden: { opacity: 0, y: 42, scale: 0.97 },
+  visible: { opacity: 1, y: 0, scale: 1 }
+};
+
 const projectsData = [
   {
     title: 'Sim Aceito',
@@ -107,10 +122,10 @@ function ProjectSlider({ images }: { images: string[] }) {
       <AnimatePresence mode="popLayout">
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.98 }}
+          transition={{ duration: 0.75, ease: 'easeOut' }}
           className={styles.slide}
         >
           <Image 
@@ -198,15 +213,21 @@ export default function Projects() {
         {dict.projects.title}
       </motion.h2>
 
-      <div className={styles.grid}>
+      <motion.div
+        className={styles.grid}
+        variants={projectGridVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.08 }}
+      >
         {projects.map((project, index) => (
           <motion.div 
             key={index}
             className={styles.card}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            variants={projectCardVariants}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
+            whileHover={{ y: -10, scale: 1.015 }}
+            whileTap={{ scale: 0.99 }}
           >
             {/* macOS Terminal Header */}
             <div className={styles.terminalHeader}>
@@ -237,22 +258,41 @@ export default function Projects() {
               
               <div className={styles.techList}>
                 {project.tech.map((tech, i) => (
-                  <span key={i} className={styles.tech}>{tech}</span>
+                  <motion.span
+                    key={i}
+                    className={styles.tech}
+                    whileHover={{ y: -3, scale: 1.06 }}
+                    transition={{ type: 'spring', stiffness: 350, damping: 18 }}
+                  >
+                    {tech}
+                  </motion.span>
                 ))}
               </div>
               
               <div className={styles.links}>
-                <a href={project.github} target="_blank" rel="noopener noreferrer">
+                <motion.a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ x: 4 }}
+                  whileTap={{ scale: 0.96 }}
+                >
                   <FaGithub /> {dict.projects.repo}
-                </a>
-                <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                </motion.a>
+                <motion.a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ x: 4 }}
+                  whileTap={{ scale: 0.96 }}
+                >
                   <FaExternalLinkAlt /> {dict.projects.demo}
-                </a>
+                </motion.a>
               </div>
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
