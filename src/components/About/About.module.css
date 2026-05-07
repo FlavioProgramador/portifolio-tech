@@ -5,7 +5,8 @@
 .title {
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 4rem;
+  margin: 0 auto 4rem auto;
+  max-width: 1200px;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -23,19 +24,21 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  align-items: flex-start;
-  margin-bottom: 4rem;
+  align-items: stretch;
+  max-width: 1200px;
+  margin: 0 auto 4rem auto;
 }
 
 .textContent {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  height: 100%;
 }
 
 .textContent p {
-  font-size: 1.2rem;
-  line-height: 1.8;
+  font-size: 1.25rem;
+  line-height: 1.9;
   color: var(--text-secondary);
 }
 
@@ -43,7 +46,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin-top: auto;
 }
 
 .statBox {
@@ -59,14 +62,16 @@
 }
 
 .statBox:hover {
-  border-color: rgba(0, 243, 255, 0.3);
+  background: rgba(0, 243, 255, 0.05);
+  border-color: rgba(0, 243, 255, 0.4);
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 243, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 243, 255, 0.15);
 }
 
 .statBox:nth-child(even):hover {
-  border-color: rgba(188, 19, 254, 0.3);
-  box-shadow: 0 10px 20px rgba(188, 19, 254, 0.1);
+  background: rgba(188, 19, 254, 0.05);
+  border-color: rgba(188, 19, 254, 0.4);
+  box-shadow: 0 10px 30px rgba(188, 19, 254, 0.15);
 }
 
 .statNumber {
@@ -118,6 +123,8 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  height: 100%;
+  justify-content: space-between;
 }
 
 .infoCard {
@@ -171,9 +178,10 @@
 }
 
 .lifestyleBox:hover {
-  background: rgba(0, 243, 255, 0.05);
-  border-color: rgba(0, 243, 255, 0.2);
+  background: rgba(0, 243, 255, 0.08);
+  border-color: rgba(0, 243, 255, 0.3);
   transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0, 243, 255, 0.1);
 }
 
 .lifestyleIcon {
