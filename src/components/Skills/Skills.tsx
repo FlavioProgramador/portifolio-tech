@@ -116,7 +116,7 @@ export default function Skills() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           whileHover={{ y: -8, scale: 1.01 }}
         >
-          <h3 className={styles.categoryTitle}>Backend & Banco de Dados</h3>
+          <h3 className={styles.categoryTitle}>Backend</h3>
           <motion.div className={styles.pillContainer} variants={pillContainer}>
             {backendSkills.map((skill, idx) => (
               <motion.div

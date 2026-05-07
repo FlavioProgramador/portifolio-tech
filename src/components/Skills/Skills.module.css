@@ -177,15 +177,52 @@
 @media (max-width: 768px) {
   .skills {
     padding: 80px 5%;
+    overflow-x: hidden;
   }
+  
+  .container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 2.5rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    /* Full width bleed */
+    width: 100vw;
+    margin-left: -5vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+  
+  .container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
+  .categoryPanel {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+    padding: 1.5rem;
+    opacity: 0.9;
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+  }
+
+  /* When the panel is centered, it becomes fully opaque and scales up (handled by scroll, but CSS can only approximate without JS. We can just keep it normal actually) */
+  .categoryPanel {
+    opacity: 1;
+    transform: scale(1);
+  }
+
   .marqueeWrapper {
     margin-left: -5vw;
   }
+  
   .marqueeWrapper::before,
   .marqueeWrapper::after {
     width: 20vw;
-  }
-  .categoryPanel {
-    padding: 1.5rem;
   }
 }
