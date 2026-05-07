@@ -1,0 +1,156 @@
+.certificates {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 10%;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  height: 1px;
+  flex: 1;
+  background: var(--glass-border);
+}
+
+.carouselContainer {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  padding: 3rem 0;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 2.5rem;
+  animation: scroll 25s linear infinite;
+  width: max-content;
+  padding-left: 2.5rem; /* Match gap */
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50%)); }
+}
+
+.carouselTrack:hover {
+  animation-play-state: paused;
+}
+
+.card {
+  width: 300px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-15px) scale(1.05) rotateX(10deg);
+  border-color: rgba(0, 243, 255, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 243, 255, 0.15);
+  z-index: 10;
+}
+
+.card:nth-child(even):hover {
+  border-color: rgba(188, 19, 254, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(188, 19, 254, 0.15);
+}
+
+.cardGlow {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center, rgba(0,243,255,0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: 16px;
+}
+
+.card:hover .cardGlow {
+  opacity: 1;
+}
+
+.cardContent {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon {
+  font-size: 3.5rem;
+  color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 0.5rem;
+  transition: all 0.4s ease;
+}
+
+.card:hover .icon {
+  color: var(--accent-cyan);
+  transform: scale(1.1) translateZ(20px);
+}
+
+.card:nth-child(even):hover .icon {
+  color: var(--accent-purple);
+}
+
+.certTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.4;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .certTitle {
+  transform: translateZ(15px);
+}
+
+.certIssuer {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.certDate {
+  font-family: var(--font-fira);
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  background: rgba(0, 243, 255, 0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+
+.card:nth-child(even) .certDate {
+  color: var(--accent-purple);
+  background: rgba(188, 19, 254, 0.1);
+}
+
+@media (max-width: 768px) {
+  .title {
+    padding: 0 5%;
+  }
+}

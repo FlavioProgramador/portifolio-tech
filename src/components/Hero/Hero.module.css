@@ -1,0 +1,248 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10%;
+  position: relative;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw;
+  height: 70vw;
+  background: radial-gradient(circle, rgba(0, 243, 255, 0.15) 0%, rgba(188, 19, 254, 0.08) 30%, transparent 60%);
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+  animation: breathe 8s ease-in-out infinite alternate;
+}
+
+@keyframes breathe {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+}
+
+.floatingElement {
+  position: absolute;
+  font-family: var(--font-fira);
+  color: var(--accent-cyan);
+  z-index: 1;
+  user-select: none;
+  opacity: 0.2;
+  text-shadow: 0 0 10px var(--accent-cyan);
+  pointer-events: none;
+}
+
+.float1 { top: 20%; left: 10%; font-size: 2.5rem; }
+.float2 { bottom: 25%; left: 15%; font-size: 1.8rem; color: var(--accent-purple); text-shadow: 0 0 10px var(--accent-purple); }
+.float3 { top: 30%; right: 45%; font-size: 1.2rem; }
+.float4 { bottom: 15%; right: 10%; font-size: 3rem; opacity: 0.1; }
+.float5 { top: 10%; right: 20%; font-size: 1.5rem; }
+.float6 { bottom: 40%; left: 5%; font-size: 2rem; color: var(--accent-purple); }
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  z-index: 2;
+  gap: 2rem;
+}
+
+.content {
+  flex: 1;
+  max-width: 650px;
+}
+
+.greeting {
+  font-family: var(--font-fira);
+  color: var(--accent-cyan);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.titleHighlight {
+  background: linear-gradient(to right, var(--accent-cyan), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.subtitle {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cursor {
+  color: var(--accent-cyan);
+  font-weight: 400;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.description {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  max-width: 550px;
+}
+
+.ctaContainer {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.primaryBtn, .secondaryBtn {
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.primaryBtn {
+  background: var(--accent-cyan);
+  color: var(--bg-color);
+  border: none;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+}
+
+.secondaryBtn {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+/* Advanced Photo Animation Section */
+.imageContainer {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageGlow {
+  position: absolute;
+  top: -15%;
+  left: -15%;
+  right: -15%;
+  bottom: -15%;
+  background: conic-gradient(
+    from 0deg,
+    var(--accent-cyan),
+    transparent 60deg,
+    var(--accent-purple) 120deg,
+    transparent 180deg,
+    var(--accent-cyan) 240deg,
+    transparent 300deg,
+    var(--accent-purple) 360deg
+  );
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: 0;
+}
+
+.imageInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.03),
+              0 20px 50px rgba(0, 0, 0, 0.6);
+  background-color: var(--bg-color);
+  cursor: pointer;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0,243,255,0.2) 0%, transparent 50%, rgba(188,19,254,0.2) 100%);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 2;
+}
+
+@media (max-width: 968px) {
+  .container {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding-top: 6rem;
+  }
+  .ctaContainer {
+    justify-content: center;
+  }
+  .description {
+    margin: 0 auto 3rem;
+  }
+  .subtitle {
+    justify-content: center;
+  }
+  .imageContainer {
+    justify-content: center;
+    max-width: 350px;
+    margin-bottom: 2rem;
+  }
+  .imageGlow {
+    filter: blur(25px);
+  }
+  .floatingElement {
+    display: none;
+  }
+}

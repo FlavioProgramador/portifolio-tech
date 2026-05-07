@@ -1,0 +1,204 @@
+.experience {
+  padding: 100px 10%;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.gitBranch {
+  font-family: var(--font-fira);
+  font-size: 1.2rem;
+  color: var(--accent-cyan);
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  height: 1px;
+  flex: 1;
+  background: var(--glass-border);
+}
+
+.timelineContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding-left: 30px;
+}
+
+/* Base line */
+.timelineTrack {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Glowing scroll line */
+.timelineProgress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple));
+  transform: translateX(-50%);
+  z-index: 2;
+  box-shadow: 0 0 15px var(--accent-cyan);
+  border-radius: 4px;
+}
+
+.itemWrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding-left: 40px;
+}
+
+.gitNode {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  border: 3px solid var(--accent-cyan);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+}
+
+.innerNode {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+}
+
+.itemWrapper:nth-child(even) .gitNode {
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
+}
+.itemWrapper:nth-child(even) .innerNode {
+  background: var(--accent-purple);
+}
+
+/* The line connecting the node to the card */
+.branchLine {
+  position: absolute;
+  left: 10px;
+  top: 30px;
+  width: 30px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  transform-origin: left;
+  z-index: 1;
+}
+
+.content {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.content:hover {
+  border-color: rgba(0, 243, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 243, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.itemWrapper:nth-child(even) .content:hover {
+  border-color: rgba(188, 19, 254, 0.3);
+  box-shadow: 0 10px 30px rgba(188, 19, 254, 0.1);
+}
+
+.commitHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-fira);
+  font-size: 0.85rem;
+  border-bottom: 1px dashed rgba(255,255,255,0.1);
+  padding-bottom: 0.8rem;
+}
+
+.commitHash {
+  color: var(--text-secondary);
+}
+
+.branchTag {
+  background: rgba(0, 243, 255, 0.1);
+  color: var(--accent-cyan);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+}
+
+.itemWrapper:nth-child(even) .branchTag {
+  background: rgba(188, 19, 254, 0.1);
+  color: var(--accent-purple);
+}
+
+.role {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.company {
+  font-family: var(--font-fira);
+  font-size: 0.95rem;
+  color: var(--accent-cyan);
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.itemWrapper:nth-child(even) .company {
+  color: var(--accent-purple);
+}
+
+.description {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .experience {
+    padding: 80px 5%;
+  }
+  .timelineContainer {
+    padding-left: 20px;
+  }
+  .itemWrapper {
+    padding-left: 25px;
+  }
+  .branchLine {
+    width: 15px;
+  }
+  .content {
+    padding: 1.5rem;
+  }
+}
