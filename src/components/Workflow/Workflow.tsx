@@ -81,6 +81,7 @@ export default function Workflow() {
             >
               {step.icon}
             </motion.div>
+            <div className={styles.stepNumber}>0{index + 1}</div>
             <h3 className={styles.stepTitle}>{step.title}</h3>
             <p className={styles.stepDescription}>{step.description}</p>
           </motion.div>
