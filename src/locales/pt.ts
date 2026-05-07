@@ -164,14 +164,14 @@ export const pt = {
     title: 'Recomendações',
     items: [
       {
-        name: 'Gustavo Trindade',
-        role: 'Head de TI',
-        text: '"O Flávio demonstra muita capacidade técnica, aprende rápido e entrega soluções com organização e qualidade. É um profissional que soma muito ao time."'
+        name: 'Rafael',
+        role: 'Professor do curso no SENAI',
+        text: '"O Flávio demonstra muita capacidade técnica, aprende rápido e entrega soluções com organização e qualidade. É um aluno dedicado e com ótima evolução no curso."'
       },
       {
-        name: 'Barbara Brito',
-        role: 'Gerente de TI',
-        text: '"O Flávio tem postura profissional, boa comunicação e bastante atenção aos detalhes. Ele se destaca pela responsabilidade e pela vontade de evoluir sempre."'
+        name: 'Simone Rebeque',
+        role: 'Diretora da Escola VIVA',
+        text: '"Contratamos o Flávio para desenvolver um software de gestão escolar e o resultado superou nossas expectativas. O sistema ficou intuitivo, estável e melhorou muito a rotina administrativa e pedagógica da escola."'
       },
       {
         name: 'Rafael Pereira',

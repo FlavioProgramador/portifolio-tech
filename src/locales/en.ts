@@ -164,14 +164,14 @@ export const en = {
     title: 'Testimonials',
     items: [
       {
-        name: 'Gustavo Trindade',
-        role: 'Head of IT',
-        text: '"Flávio shows strong technical ability, learns quickly, and delivers well-organized, high-quality solutions. He adds a lot of value to the team."'
+        name: 'Rafael',
+        role: 'SENAI Course Instructor',
+        text: '"Flávio shows strong technical ability, learns quickly, and delivers well-organized, high-quality solutions. He is a dedicated student with excellent growth throughout the course."'
       },
       {
-        name: 'Barbara Brito',
-        role: 'IT Manager',
-        text: '"Flávio has a professional attitude, strong communication, and great attention to detail. He stands out for his responsibility and drive to keep improving."'
+        name: 'Simone Rebeque',
+        role: 'Principal at VIVA School',
+        text: '"We hired Flávio to develop a school management software solution, and the result exceeded our expectations. The system is intuitive, stable, and greatly improved the school\'s administrative and pedagogical routines."'
       },
       {
         name: 'Rafael Pereira',
