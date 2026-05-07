@@ -131,15 +131,35 @@ export default function Contact() {
               variants={outputItem}
               style={{ marginTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.04)', paddingTop: '1rem' }}
             >
-              <form onSubmit={handleSubmit}>
-                <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                  <input placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} style={{ flex: 1, padding: '0.6rem' }} required />
-                  <input placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} style={{ flex: 1, padding: '0.6rem' }} required />
+              <form onSubmit={handleSubmit} className={styles.contactForm}>
+                <div className={styles.inputRow}>
+                  <input 
+                    placeholder="Nome" 
+                    value={name} 
+                    onChange={(e) => setName(e.target.value)} 
+                    className={styles.inputField} 
+                    required 
+                  />
+                  <input 
+                    placeholder="Email" 
+                    type="email" 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} 
+                    className={styles.inputField} 
+                    required 
+                  />
                 </div>
                 <div>
-                  <textarea placeholder="Mensagem" value={messageBody} onChange={(e) => setMessageBody(e.target.value)} rows={4} style={{ width: '100%', padding: '0.6rem' }} required />
+                  <textarea 
+                    placeholder="Mensagem" 
+                    value={messageBody} 
+                    onChange={(e) => setMessageBody(e.target.value)} 
+                    rows={4} 
+                    className={styles.textAreaField} 
+                    required 
+                  />
                 </div>
-                <div style={{ marginTop: '0.6rem', display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
+                <div className={styles.submitBtnContainer}>
                   <motion.button type="submit" className={styles.actionBtn} disabled={sending} whileTap={{ scale: 0.97 }}>
                     {sending ? 'Enviando...' : 'Enviar Mensagem'}
                   </motion.button>
