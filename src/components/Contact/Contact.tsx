@@ -190,7 +190,7 @@ export default function Contact() {
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <span className={styles.footerText}>
-          {`console.log("${dict.contact.footer} \u2665 por Fl\u00e1vio da Costa Marques \u00b7 ${new Date().getFullYear()}");`}
+          {`console.log("Feito por Flávio da Costa Marques \u00A9 ${new Date().getFullYear()}");`}
         </span>
       </motion.footer>
     </section>
