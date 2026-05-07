@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useMemo } from 'react';
 import styles from './About.module.css';
 import { FaMapMarkerAlt, FaGraduationCap, FaBriefcase, FaLanguage, FaDownload, FaClock, FaCoffee, FaMusic } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';

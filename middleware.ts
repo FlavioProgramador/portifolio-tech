@@ -4,8 +4,8 @@ import type { NextRequest } from 'next/server';
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // protect admin routes
-  if (pathname.startsWith('/admin')) {
+  // protect admin routes and message API
+  if (pathname.startsWith('/admin') || pathname === '/api/contact/messages') {
     const auth = req.headers.get('authorization') || '';
     if (!auth || !auth.startsWith('Basic ')) {
       return new NextResponse('Authentication required', {
@@ -25,7 +25,7 @@ export function middleware(req: NextRequest) {
           headers: { 'WWW-Authenticate': 'Basic realm="Admin Area"' }
         });
       }
-    } catch (err) {
+    } catch {
       return new NextResponse('Unauthorized', {
         status: 401,
         headers: { 'WWW-Authenticate': 'Basic realm="Admin Area"' }
@@ -37,5 +37,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*']
+  matcher: ['/admin/:path*', '/api/contact/messages']
 };

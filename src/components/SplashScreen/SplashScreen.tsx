@@ -4,23 +4,23 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './SplashScreen.module.css';
 
+const LOGS = [
+  '> Inicializando sistema...',
+  '> Carregando m\u00f3dulos do kernel...',
+  '> Estabelecendo conex\u00e3o segura...',
+  '> Resolvendo depend\u00eancias...',
+  '> Acesso concedido. Bem-vindo, visitante!'
+];
+
 export default function SplashScreen() {
   const [show, setShow] = useState(true);
   const [textIndex, setTextIndex] = useState(0);
 
-  const logs = [
-    '> Inicializando sistema...',
-    '> Carregando módulos do kernel...',
-    '> Estabelecendo conexão segura...',
-    '> Resolvendo dependências...',
-    '> Acesso concedido. Bem-vindo, visitante!'
-  ];
-
   useEffect(() => {
     // Sequentially show logs
     const textInterval = setInterval(() => {
-      setTextIndex(prev => {
-        if (prev < logs.length - 1) return prev + 1;
+      setTextIndex((prev) => {
+        if (prev < LOGS.length - 1) return prev + 1;
         clearInterval(textInterval);
         return prev;
       });
@@ -53,9 +53,9 @@ export default function SplashScreen() {
               <div className={`${styles.dot} ${styles.green}`}></div>
             </div>
             <div className={styles.body}>
-              {logs.slice(0, textIndex + 1).map((log, index) => (
-                <motion.div 
-                  key={index} 
+              {LOGS.slice(0, textIndex + 1).map((log, index) => (
+                <motion.div
+                  key={index}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   className={styles.logLine}

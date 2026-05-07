@@ -5,6 +5,12 @@ import styles from './Testimonials.module.css';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { FaQuoteLeft } from 'react-icons/fa';
 
+type TestimonialItem = {
+  name: string;
+  role: string;
+  text: string;
+};
+
 export default function Testimonials() {
   const { dict } = useLanguage();
 
@@ -21,7 +27,7 @@ export default function Testimonials() {
       </motion.h2>
 
       <div className={styles.grid}>
-        {dict.testimonials.items.map((item: any, index: number) => (
+        {dict.testimonials.items.map((item: TestimonialItem, index: number) => (
           <motion.div 
             key={index}
             className={styles.card}

@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import styles from '@/components/Contact/Contact.module.css';
 import Link from 'next/link';
+import type { ContactMessage } from '@/lib/contact-messages';
 
 export default function MessagesAdminPage() {
-  const [messages, setMessages] = useState<any[]>([]);
+  const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

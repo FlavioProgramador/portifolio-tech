@@ -4,6 +4,10 @@ import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
 import { storeContactMessage } from '@/lib/contact-messages';
 
+function getErrorMessage(err: unknown) {
+  return err instanceof Error ? err.message : 'Unknown error';
+}
+
 export async function POST(request: Request) {
   try {
     const data = await request.json();
@@ -50,8 +54,8 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ ok: true, emailed: Boolean(host && port && user && pass && to), storage });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('Contact API error', err);
-    return NextResponse.json({ error: err.message || 'Unknown error' }, { status: 500 });
+    return NextResponse.json({ error: getErrorMessage(err) }, { status: 500 });
   }
 }

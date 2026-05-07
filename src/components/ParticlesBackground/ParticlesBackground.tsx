@@ -12,7 +12,6 @@ export default function ParticlesBackground() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let particlesArray: any[] = [];
     let animationFrameId: number;
 
     const resizeCanvas = () => {
@@ -59,6 +58,8 @@ export default function ParticlesBackground() {
         ctx.fill();
       }
     }
+
+    let particlesArray: Particle[] = [];
 
     const init = () => {
       particlesArray = [];

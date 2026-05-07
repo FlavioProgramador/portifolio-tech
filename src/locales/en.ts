@@ -10,6 +10,7 @@ export const en = {
   hero: {
     greeting: 'Hello, world! I am',
     role: 'Full Stack Developer',
+    rolePrefix: 'Developer',
     description: 'Passionate about creating elegant and functional digital experiences. I turn ideas into clean and efficient code.',
     ctaProjects: 'View Projects',
     ctaContact: 'Contact Me'

@@ -15,6 +15,10 @@ function hasRedisConfig() {
   return Boolean(process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN);
 }
 
+function isVercelRuntime() {
+  return Boolean(process.env.VERCEL);
+}
+
 async function readFileMessages(): Promise<ContactMessage[]> {
   try {
     const raw = await fs.readFile(FILE_PATH, 'utf-8');
@@ -81,6 +85,11 @@ export async function storeContactMessage(message: ContactMessage) {
     } catch (err) {
       console.error('Failed to save contact message to Redis', err);
     }
+  }
+
+  if (isVercelRuntime()) {
+    console.warn('Contact message storage is disabled because Upstash Redis is not configured.');
+    return 'disabled' as const;
   }
 
   await writeFileMessages(next);

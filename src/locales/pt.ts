@@ -10,6 +10,7 @@ export const pt = {
   hero: {
     greeting: 'Olá, mundo! Eu sou',
     role: 'Full Stack Developer',
+    rolePrefix: 'Desenvolvedor',
     description: 'Apaixonado por criar experiências digitais elegantes e funcionais. Transformo ideias em código limpo e eficiente.',
     ctaProjects: 'Ver Projetos',
     ctaContact: 'Falar Comigo'

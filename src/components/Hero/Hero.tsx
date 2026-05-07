@@ -8,6 +8,14 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const ROLES = ["Full Stack", "Front-end", "Back-end"];
+const FLOATING_ELEMENTS = [
+  { label: '< />', y: -34, x: 18, rotate: 72, duration: 8.5, delay: 0.1 },
+  { label: '{ }', y: -58, x: -16, rotate: 135, duration: 10.2, delay: 0.6 },
+  { label: '[ ]', y: -42, x: 22, rotate: 96, duration: 7.8, delay: 1.1 },
+  { label: '()', y: -64, x: -24, rotate: 168, duration: 11.4, delay: 0.3 },
+  { label: '=>', y: -50, x: 12, rotate: 118, duration: 9.6, delay: 1.8 },
+  { label: ';;', y: -28, x: -18, rotate: 54, duration: 6.9, delay: 2.4 }
+];
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -74,23 +82,23 @@ export default function Hero() {
       <div className={styles.backgroundGlow} />
       
       {/* Many Floating Elements for Depth */}
-      {[...Array(6)].map((_, i) => (
+      {FLOATING_ELEMENTS.map((element, i) => (
         <motion.div 
           key={i}
           className={`${styles.floatingElement} ${styles[`float${i+1}`]}`}
           animate={{ 
-            y: [0, Math.random() * -60 - 20, 0],
-            x: [0, Math.random() * 40 - 20, 0],
-            rotate: [0, Math.random() * 180, 0]
+            y: [0, element.y, 0],
+            x: [0, element.x, 0],
+            rotate: [0, element.rotate, 0]
           }}
           transition={{ 
-            duration: 6 + Math.random() * 6, 
+            duration: element.duration, 
             repeat: Infinity, 
             ease: 'easeInOut',
-            delay: Math.random() * 3
+            delay: element.delay
           }}
         >
-          {['< />', '{ }', '[ ]', '()', '=>', ';;'][i]}
+          {element.label}
         </motion.div>
       ))}
 
@@ -111,7 +119,7 @@ export default function Hero() {
           </motion.h1>
           
           <motion.h2 variants={itemVariants} className={styles.subtitle}>
-            {dict.hero.role.split(' ')[0]} <span className="text-gradient">{currentText}</span><span className={styles.cursor}>|</span>
+            {dict.hero.rolePrefix} <span className="text-gradient">{currentText}</span><span className={styles.cursor}>|</span>
           </motion.h2>
           
           <motion.p variants={itemVariants} className={styles.description}>

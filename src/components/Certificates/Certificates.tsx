@@ -9,10 +9,16 @@ const getIcon = (index: number) => {
   return index % 2 === 0 ? <FaAward /> : <FaCertificate />;
 };
 
+type CertificateItem = {
+  title: string;
+  issuer: string;
+  date: string;
+};
+
 export default function Certificates() {
   const { dict } = useLanguage();
   
-  const certificates = dict.certificates.items.map((item: any, i: number) => ({
+  const certificates = dict.certificates.items.map((item: CertificateItem, i: number) => ({
     ...item,
     icon: getIcon(i)
   }));

@@ -1,18 +1,34 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useMemo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import styles from './Experience.module.css';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+type ExperienceItem = {
+  title: string;
+  org: string;
+  date: string;
+  desc: string;
+};
+
+function createCommitHash(value: string) {
+  let hash = 0;
+
+  for (let i = 0; i < value.length; i += 1) {
+    hash = (hash * 31 + value.charCodeAt(i)) >>> 0;
+  }
+
+  return hash.toString(16).padStart(7, '0').slice(0, 7);
+}
+
 export default function Experience() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { dict } = useLanguage();
-  const [hashes, setHashes] = useState<string[]>([]);
-
-  useEffect(() => {
-    setHashes(dict.experience.items.map(() => Math.random().toString(16).slice(2, 9)));
-  }, [dict.experience.items]);
+  const hashes = useMemo(
+    () => dict.experience.items.map((item) => createCommitHash(`${item.title}-${item.org}-${item.date}`)),
+    [dict.experience.items]
+  );
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -42,7 +58,7 @@ export default function Experience() {
           style={{ height: lineHeight }}
         />
 
-        {dict.experience.items.map((item: any, index: number) => (
+        {dict.experience.items.map((item: ExperienceItem, index: number) => (
           <div key={index} className={styles.itemWrapper}>
             <motion.div 
               className={styles.gitNode}
