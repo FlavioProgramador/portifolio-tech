@@ -9,7 +9,7 @@ import { FaServer, FaCoffee, FaBug } from 'react-icons/fa';
 export default function SystemStatus() {
   const { dict } = useLanguage();
   const [uptime, setUptime] = useState(0);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(true);
   const [isClosed, setIsClosed] = useState(false);
 
   useEffect(() => {
@@ -37,6 +37,11 @@ export default function SystemStatus() {
       initial={{ opacity: 0, x: 28, y: 20, scale: 0.96 }}
       animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
       transition={{ duration: 0.45, ease: 'easeOut' }}
+      drag
+      dragConstraints={{ top: -800, bottom: 0, left: -1000, right: 0 }}
+      dragElastic={0.1}
+      dragMomentum={false}
+      whileDrag={{ cursor: 'grabbing', scale: 1.02 }}
       layout
     >
       <div className={styles.widgetHeader}>
